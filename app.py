@@ -38,7 +38,9 @@ def explorer(country_id):
         return f"Impossible de contacter l'API : {e}", 500
 
 if __name__ == '__main__':
-    # On récupère le port assigné par Render, sinon 5001 par défaut
+    # On récupère le port via la variable d'environnement de Render
+    import os
     port = int(os.environ.get("PORT", 5001))
-    # IMPORTANT: host='0.0.0.0' est requis pour le déploiement
-    app.run(host='0.0.0.0', port=port)
+    
+    # IMPORTANT : host="0.0.0.0" permet à Render de router le trafic vers votre app
+    app.run(host="0.0.0.0", port=port)
